@@ -42,7 +42,7 @@ function checkWin(element, x, y) {
     // check win theo hang ngang tien ve truoc - ben phai diem danh
     let i = 1;
     var count = 1;
-    while (arr[x][y + i] === element.innerHTML && (y + i) < CELLS) {
+    while ((y + i) < CELLS && arr[x][y + i] === element.innerHTML) {
         count++;
         i++;
     }
@@ -50,7 +50,7 @@ function checkWin(element, x, y) {
     // check win theo hang ngang tien ve sau - ben trai diem danh
 
     let j = 1
-    while (arr[x][y - j] === element.innerHTML && (y - j) >= 0) {
+    while ((y - j) >= 0 && arr[x][y - j] === element.innerHTML) {
         count++;
         j++;
     }
@@ -61,29 +61,51 @@ function checkWin(element, x, y) {
 
     let m = 1;
     var count2 = 1;
-    if (x > 0) {
-        while (arr[x - m][y] === element.innerHTML && (x - m) >= 0) {
-            count2++;
-            m++;
-        }
+
+    while ((x - m) >= 0 && arr[x - m][y] === element.innerHTML) {
+        count2++;
+        m++;
     }
+
 
     // check cheo doc di xuong
     let n = 1;
-    if (x < ROWS - 1) {
-        while (arr[x + n][y] === element.innerHTML && (x + n) < ROWS) {
-            count2++;
-            n++;
-        }
+
+    while ((x + n) < ROWS && arr[x + n][y] === element.innerHTML) {
+        count2++;
+        n++;
     }
+
 
     gameOver(count2);
 
-    // check win theo duong cheo trai
+    // check win theo duong cheo trai di len tren
+
+    let k = 1;
+    let count3 = 1;
+    while ((x - k > 0) && (y - k) > 0 && arr[x - k][y - k] == element.innerHTML) {
+        count3++;
+        k++;
+    }
+
+    // check win theo duong cheo trai di xuong duoi
+    let h = 1;
+    while ((x + h) < ROWS && (y + h) < CELLS && arr[x + h][y + h] == element.innerHTML) {
+        count3++;
+        h++;
+
+    }
+    console.log(count3);
+    gameOver(count3);
+
+
+    // check win theo duong cheo phai di len
 
 
 
-    // check win theo duong cheo phai
+
+    // check win theo duong cheo phai di xuong
+
 
 
 }
